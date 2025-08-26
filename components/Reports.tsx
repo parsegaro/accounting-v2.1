@@ -644,15 +644,45 @@ const Reports = () => {
             </div>
             {activeReport !== 'aging' && activeReport !== 'balance-sheet' && (
                 <div className="flex items-center space-x-2 space-x-reverse">
-                    <JalaliDatePicker label="تاریخ شروع" value={startDate} onChange={(newDate) => { if (newDate) setStartDate(newDate); }} />
+                    <JalaliDatePicker
+                        label="تاریخ شروع"
+                        value={startDate}
+                        onChange={(newDate) => {
+                            if (newDate) {
+                                const date = new Date(newDate);
+                                const formatted = new Intl.DateTimeFormat('fa-IR-u-nu-latn', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(date);
+                                setStartDate(formatted);
+                            }
+                        }}
+                    />
                     <span>تا</span>
-                    <JalaliDatePicker label="تاریخ پایان" value={endDate} onChange={(newDate) => { if (newDate) setEndDate(newDate); }} />
+                    <JalaliDatePicker
+                        label="تاریخ پایان"
+                        value={endDate}
+                        onChange={(newDate) => {
+                            if (newDate) {
+                                const date = new Date(newDate);
+                                const formatted = new Intl.DateTimeFormat('fa-IR-u-nu-latn', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(date);
+                                setEndDate(formatted);
+                            }
+                        }}
+                    />
                 </div>
             )}
             {activeReport === 'balance-sheet' && (
                  <div className="flex items-center space-x-2 space-x-reverse">
                     <span>برای تاریخ:</span>
-                    <JalaliDatePicker label="برای تاریخ:" value={balanceSheetDate} onChange={(newDate) => { if (newDate) setBalanceSheetDate(newDate); }} />
+                    <JalaliDatePicker
+                        label="برای تاریخ:"
+                        value={balanceSheetDate}
+                        onChange={(newDate) => {
+                            if (newDate) {
+                                const date = new Date(newDate);
+                                const formatted = new Intl.DateTimeFormat('fa-IR-u-nu-latn', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(date);
+                                setBalanceSheetDate(formatted);
+                            }
+                        }}
+                    />
                 </div>
             )}
         </div>

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AdapterDateFnsJalali } from '@mui/x-date-pickers/AdapterDateFnsJalali';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { TextField } from '@mui/material';
 
 interface JalaliDatePickerProps {
@@ -11,24 +11,38 @@ interface JalaliDatePickerProps {
 }
 
 const JalaliDatePicker: React.FC<JalaliDatePickerProps> = ({ value, onChange, label }) => {
+  useEffect(() => {
+    // If the component mounts with no value, initialize it to the current date and time.
+    if (!value) {
+      onChange(new Date().toISOString());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Run only once on mount to set the initial value
+
   const handleDateChange = (newValue: Date | null) => {
     if (newValue) {
-      const isoString = newValue.toISOString().split('T')[0]; // YYYY-MM-DD
-      onChange(isoString);
+      onChange(newValue.toISOString());
     } else {
       onChange(null);
     }
   };
 
-  const dateValue = value ? new Date(value) : null;
-
   return (
     <LocalizationProvider dateAdapter={AdapterDateFnsJalali}>
-      <DatePicker
+      <DateTimePicker
         label={label || "Select Date"}
-        value={dateValue}
+        value={value ? new Date(value) : null} // Use null if value is not set yet
         onChange={handleDateChange}
-        renderInput={(params) => <TextField {...params} />}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            // Apply the custom class to the input element for consistent styling
+            inputProps={{
+              ...params.inputProps,
+              className: `${params.inputProps?.className || ''} form-input`,
+            }}
+          />
+        )}
       />
     </LocalizationProvider>
   );
