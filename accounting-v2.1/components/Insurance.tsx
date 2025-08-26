@@ -180,7 +180,7 @@ const ClaimForm = ({ claim, onSave, onCancel }: { claim?: InsuranceClaim | null,
                 </div>
                  <div>
                     <label className={labelClasses}>تاریخ ارسال</label>
-                    <JalaliDatePicker value={formData.submissionDate || ''} onChange={d => setFormData(p => ({...p, submissionDate: d}))} />
+                    <JalaliDatePicker label="تاریخ ارسال" value={formData.submissionDate || null} onChange={d => setFormData(p => ({...p, submissionDate: d}))} />
                 </div>
                  <div>
                     <label className={labelClasses}>وضعیت</label>
@@ -276,7 +276,7 @@ const RecordPaymentForm = ({ claim, onSave, onCancel }: { claim: InsuranceClaim,
             </div>
             <div>
                 <label className="block text-sm font-medium text-[var(--text-secondary)]">تاریخ دریافت</label>
-                <JalaliDatePicker value={receivedDate} onChange={setReceivedDate} />
+                <JalaliDatePicker label="تاریخ دریافت" value={receivedDate} onChange={(newDate) => { if (newDate) setReceivedDate(newDate); }} />
             </div>
              <div className="flex justify-end pt-4 space-x-2 space-x-reverse">
                 <button type="button" onClick={onCancel} className="btn btn-secondary">لغو</button>

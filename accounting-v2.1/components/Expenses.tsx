@@ -121,7 +121,7 @@ const PaymentForm = ({ itemToEdit, onSave, onCancel, type }: { itemToEdit: Parti
                 </div>
                 <div>
                     <label className={labelClasses}>تاریخ*</label>
-                    <JalaliDatePicker value={formData.date || ''} onChange={(date) => setFormData(p => ({...p, date}))} />
+                    <JalaliDatePicker label="تاریخ*" value={formData.date || null} onChange={(date) => setFormData(p => ({...p, date}))} />
                 </div>
             </div>
              <div>
@@ -191,7 +191,7 @@ const ExpenseForm = ({ itemToEdit, onSave, onCancel }: { itemToEdit: Partial<Exp
                 </div>
                  <div>
                     <label className={labelClasses}>تاریخ*</label>
-                     <JalaliDatePicker value={formData.date || ''} onChange={(date) => setFormData(p => ({...p, date}))} />
+                     <JalaliDatePicker label="تاریخ*" value={formData.date || null} onChange={(date) => setFormData(p => ({...p, date}))} />
                 </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

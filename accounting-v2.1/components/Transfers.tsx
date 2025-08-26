@@ -71,7 +71,7 @@ const TransferForm = ({ transfer, onSave, onCancel }: { transfer?: Transfer | nu
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label className={labelClasses}>تاریخ</label>
-                    <JalaliDatePicker value={formData.date || ''} onChange={(date) => setFormData(p => ({...p, date}))} />
+                    <JalaliDatePicker label="تاریخ" value={formData.date || null} onChange={(date) => { if(date) setFormData(p => ({...p, date})); }} />
                 </div>
                  <div>
                     <label className={labelClasses}>شرح</label>

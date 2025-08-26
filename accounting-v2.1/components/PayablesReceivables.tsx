@@ -45,8 +45,8 @@ const PayablesForm = ({ item, onSave, onCancel }: { item?: PayableReceivable | n
         setFormData(prev => ({...prev, [e.target.name]: e.target.value}));
     }
     const handleFilesChange = (files: { name: string, dataUrl: string }[]) => setFormData(prev => ({ ...prev, attachments: files }));
-    const handleDueDateChange = useCallback((date: string) => setFormData(prev => ({...prev, dueDate: date})), []);
-    const handleIssueDateChange = useCallback((date: string) => setFormData(prev => ({...prev, issueDate: date})), []);
+    const handleDueDateChange = useCallback((date: string | null) => { if(date) setFormData(prev => ({...prev, dueDate: date})) }, []);
+    const handleIssueDateChange = useCallback((date: string | null) => { if(date) setFormData(prev => ({...prev, issueDate: date})) }, []);
 
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -82,11 +82,11 @@ const PayablesForm = ({ item, onSave, onCancel }: { item?: PayableReceivable | n
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label className={labelClasses}>تاریخ صدور</label>
-                    <JalaliDatePicker value={formData.issueDate || ''} onChange={handleIssueDateChange} />
+                    <JalaliDatePicker label="تاریخ صدور" value={formData.issueDate || null} onChange={handleIssueDateChange} />
                 </div>
                 <div>
                     <label className={labelClasses}>تاریخ سررسید</label>
-                    <JalaliDatePicker value={formData.dueDate || ''} onChange={handleDueDateChange} />
+                    <JalaliDatePicker label="تاریخ سررسید" value={formData.dueDate || null} onChange={handleDueDateChange} />
                 </div>
             </div>
              <div>

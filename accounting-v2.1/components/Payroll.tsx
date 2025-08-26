@@ -84,8 +84,8 @@ const PayslipForm = ({ payslip, onSave, onCancel }: { payslip?: Payslip | null, 
         setFormData(prev => ({ ...prev, [field]: value }));
     };
 
-    const handleDateChange = useCallback((date: string) => {
-        setFormData(prev => ({...prev, date}));
+    const handleDateChange = useCallback((date: string | null) => {
+        if(date) setFormData(prev => ({...prev, date}));
     }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -119,7 +119,7 @@ const PayslipForm = ({ payslip, onSave, onCancel }: { payslip?: Payslip | null, 
                     </div>
                     <div>
                         <label className={labelClasses}>تاریخ صدور</label>
-                        <JalaliDatePicker value={formData.date || ''} onChange={handleDateChange} />
+                        <JalaliDatePicker label="تاریخ صدور" value={formData.date || null} onChange={handleDateChange} />
                     </div>
                 </div>
                  {selectedEmployee?.salaryType === 'hourly' && (

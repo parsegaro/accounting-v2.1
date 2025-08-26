@@ -27,8 +27,8 @@ export const PatientForm = ({ patient, onSave, onCancel }: { patient: Partial<Pa
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleDateChange = useCallback((date: string) => {
-        setFormData(prev => ({ ...prev, birthDate: date }));
+    const handleDateChange = useCallback((date: string | null) => {
+        setFormData(prev => ({ ...prev, birthDate: date || '' }));
     }, []);
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -57,7 +57,7 @@ export const PatientForm = ({ patient, onSave, onCancel }: { patient: Partial<Pa
                     </div>
                     <div>
                         <label htmlFor="birthDate" className="block text-sm font-medium text-[var(--text-secondary)]">تاریخ تولد</label>
-                        <JalaliDatePicker value={formData.birthDate || ''} onChange={handleDateChange} />
+                        <JalaliDatePicker label="تاریخ تولد" value={formData.birthDate || null} onChange={handleDateChange} />
                     </div>
                     <div>
                         <label htmlFor="address" className="block text-sm font-medium text-[var(--text-secondary)]">آدرس</label>

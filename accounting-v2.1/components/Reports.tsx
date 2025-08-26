@@ -644,15 +644,15 @@ const Reports = () => {
             </div>
             {activeReport !== 'aging' && activeReport !== 'balance-sheet' && (
                 <div className="flex items-center space-x-2 space-x-reverse">
-                    <JalaliDatePicker value={startDate} onChange={setStartDate} />
+                    <JalaliDatePicker label="تاریخ شروع" value={startDate} onChange={(newDate) => { if (newDate) setStartDate(newDate); }} />
                     <span>تا</span>
-                    <JalaliDatePicker value={endDate} onChange={setEndDate} />
+                    <JalaliDatePicker label="تاریخ پایان" value={endDate} onChange={(newDate) => { if (newDate) setEndDate(newDate); }} />
                 </div>
             )}
             {activeReport === 'balance-sheet' && (
                  <div className="flex items-center space-x-2 space-x-reverse">
                     <span>برای تاریخ:</span>
-                    <JalaliDatePicker value={balanceSheetDate} onChange={setBalanceSheetDate} />
+                    <JalaliDatePicker label="برای تاریخ:" value={balanceSheetDate} onChange={(newDate) => { if (newDate) setBalanceSheetDate(newDate); }} />
                 </div>
             )}
         </div>

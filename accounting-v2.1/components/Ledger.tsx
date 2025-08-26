@@ -33,7 +33,7 @@ const LedgerForm = ({ onSave, onCancel }: { onSave: (entry: Omit<LedgerEntry, 'i
         }));
     };
     
-    const handleDateChange = useCallback((date: string) => setFormData(prev => ({ ...prev, date })), []);
+    const handleDateChange = useCallback((date: string | null) => { if(date) setFormData(prev => ({ ...prev, date })) }, []);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -70,7 +70,7 @@ const LedgerForm = ({ onSave, onCancel }: { onSave: (entry: Omit<LedgerEntry, 'i
              </div>
               <div>
                 <label htmlFor="date" className={labelClasses}>تاریخ</label>
-                <JalaliDatePicker value={formData.date || getFormattedDate()} onChange={handleDateChange} />
+                <JalaliDatePicker label="تاریخ" value={formData.date || null} onChange={handleDateChange} />
             </div>
              <div className="flex justify-end pt-4 space-x-2 space-x-reverse">
                 <button type="button" onClick={onCancel} className="btn btn-secondary">لغو</button>

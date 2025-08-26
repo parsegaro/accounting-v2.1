@@ -167,7 +167,7 @@ const Income = () => {
                     <div className="space-y-4">
                          <div>
                             <label className={labelClasses}>تاریخ</label>
-                            <JalaliDatePicker value={date} onChange={setDate} />
+                            <JalaliDatePicker label="تاریخ" value={date} onChange={(newDate) => { if (newDate) setDate(newDate); }} />
                         </div>
 
                         <fieldset className="border p-4 rounded-md border-[var(--border-secondary)]">

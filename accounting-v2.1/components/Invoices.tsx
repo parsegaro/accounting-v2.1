@@ -151,7 +151,7 @@ const InvoiceForm = ({ invoice, onSave, onCancel }: { invoice?: Invoice | null, 
                 </div>
                  <div>
                     <label className={labelClasses}>تاریخ صدور</label>
-                    <JalaliDatePicker value={date} onChange={setDate} />
+                    <JalaliDatePicker label="تاریخ صدور" value={date} onChange={(newDate) => { if (newDate) setDate(newDate); }} />
                 </div>
             </div>
 
